@@ -50,4 +50,7 @@ export PATH=/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/bin:/usr/X11/bin:/Users/bbe
 export LSCOLORS='Exfxcxdxbxegedabagacad'
 export RAILS_ENV=development
 
-alias core="psql -U bbenthall -h coredb rpx"
+
+function serve {
+  ruby -r webrick -e "s = WEBrick::HTTPServer.new(:Port => 9090, :DocumentRoot => Dir.pwd); trap('INT') { s.shutdown }; s.start"
+}
